@@ -24,9 +24,12 @@ let getWeatherData = async function(url) {
   data = await resp.json();
   let weatherData = {
     weather: data.weather[0].main,
-    temperature: data.main.temp
+    temperature: data.main.temp - 273.15 //convert temperature from kelvin to celsius
   };
   console.log(locData.city, locData.country, weatherData);
+  loc.innerHTML = `${locData.city}, ${locData.country}`;
+  temperature.innerHTML = `${weatherData.temperature}`;
+  weather.innerHTML = `${weatherData.weather}`;
 };
 
 getWeatherData(posUrl);
